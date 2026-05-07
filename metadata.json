@@ -1,0 +1,6 @@
+{
+  "name": "English Quest",
+  "description": "A professional, gamified platform for learning English with progress tracking, interactive lessons, and AI-powered feedback.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["AI-powered exercises", "Gamified learning path", "Progress tracking"]
+}
