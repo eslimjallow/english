@@ -13,9 +13,10 @@ const ICON_MAP: Record<string, any> = {
 
 interface DashboardProps {
   onStartLesson: (id: string) => void;
+  onNavigate: (tab: string) => void;
 }
 
-export function Dashboard({ onStartLesson }: DashboardProps) {
+export function Dashboard({ onStartLesson, onNavigate }: DashboardProps) {
   const quest = SAMPLE_QUESTS[0];
 
   return (
@@ -24,13 +25,13 @@ export function Dashboard({ onStartLesson }: DashboardProps) {
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative bg-gradient-to-r from-[#D0C4FF] to-[#EBE4FF] rounded-[40px] p-10 flex items-center justify-between overflow-hidden group shadow-xl shadow-purple-200/50"
+        className="relative bg-gradient-to-r from-pink-200 to-pink-100 rounded-[40px] p-10 flex items-center justify-between overflow-hidden group shadow-xl shadow-pink-200/50"
       >
         <div className="relative z-10 space-y-4 max-w-md">
-          <div className="inline-block px-4 py-1.5 bg-white/60 backdrop-blur-md rounded-full text-purple-700 font-bold text-sm uppercase tracking-wider">
+          <div className="inline-block px-4 py-1.5 bg-white/60 backdrop-blur-md rounded-full text-pink-700 font-bold text-sm uppercase tracking-wider">
             {quest.title}
           </div>
-          <h3 className="text-4xl font-black text-[#1E114D] leading-tight">
+          <h3 className="text-4xl font-black text-pink-950 leading-tight">
             {quest.description}
           </h3>
           
@@ -39,10 +40,10 @@ export function Dashboard({ onStartLesson }: DashboardProps) {
               <motion.div 
                 initial={{ width: 0 }}
                 animate={{ width: `${(quest.current / quest.target) * 100}%` }}
-                className="h-full bg-green-400"
+                className="h-full bg-pink-500"
               />
             </div>
-            <div className="flex justify-between text-[#1E114D] font-bold text-sm">
+            <div className="flex justify-between text-pink-950 font-bold text-sm">
               <span>{quest.current} / {quest.target}</span>
               <div className="flex space-x-4">
                 <span className="flex items-center space-x-1">
@@ -50,7 +51,7 @@ export function Dashboard({ onStartLesson }: DashboardProps) {
                   <span>{quest.rewardXp} XP</span>
                 </span>
                 <span className="flex items-center space-x-1">
-                  <span className="text-yellow-600">💰</span>
+                  <span className="text-pink-600">💰</span>
                   <span>{quest.rewardCoins} monedas</span>
                 </span>
               </div>
@@ -59,7 +60,7 @@ export function Dashboard({ onStartLesson }: DashboardProps) {
 
           <button 
              onClick={() => onStartLesson('1')}
-             className="mt-4 px-8 py-4 bg-[#5F33E1] text-white font-bold rounded-2xl shadow-lg shadow-purple-300 hover:scale-105 transition-transform active:scale-95"
+             className="mt-4 px-8 py-4 bg-pink-600 text-white font-bold rounded-2xl shadow-lg shadow-pink-300 hover:scale-105 transition-transform active:scale-95"
           >
             Continuar
           </button>
@@ -73,7 +74,7 @@ export function Dashboard({ onStartLesson }: DashboardProps) {
              referrerPolicy="no-referrer"
            />
            {/* Decorative EQ flag logic from image */}
-           <div className="absolute top-4 right-0 bg-[#5F33E1] text-white px-4 py-2 rounded-lg font-black text-xl rotate-12 shadow-lg">
+           <div className="absolute top-4 right-0 bg-pink-600 text-white px-4 py-2 rounded-lg font-black text-xl rotate-12 shadow-lg">
              EQ
            </div>
         </div>
@@ -81,10 +82,10 @@ export function Dashboard({ onStartLesson }: DashboardProps) {
 
       {/* Learning Path */}
       <section className="space-y-6">
-        <h4 className="text-2xl font-black text-[#1E114D]">Tu camino de aprendizaje</h4>
+        <h4 className="text-2xl font-black text-pink-950">Tu camino de aprendizaje</h4>
         <div className="flex items-center justify-between relative px-4">
           {/* Path Line */}
-          <div className="absolute top-1/2 left-0 right-0 h-1 bg-slate-100 -translate-y-1/2 -z-10 border-t-2 border-dashed border-slate-200" />
+          <div className="absolute top-1/2 left-0 right-0 h-1 bg-pink-50 -translate-y-1/2 -z-10 border-t-2 border-dashed border-pink-100" />
           
           {LEARNING_PATH.map((stage, idx) => {
             const Icon = ICON_MAP[stage.icon] || BookOpen;
@@ -108,7 +109,7 @@ export function Dashboard({ onStartLesson }: DashboardProps) {
                       {[1, 2, 3].map(s => (
                         <Star 
                           key={s} 
-                          className={`w-4 h-4 ${s <= stage.stars ? 'text-yellow-400 fill-current' : 'text-slate-200 fill-current'}`} 
+                          className={`w-4 h-4 ${s <= stage.stars ? 'text-pink-400 fill-current' : 'text-slate-200 fill-current'}`} 
                         />
                       ))}
                     </div>
@@ -128,30 +129,30 @@ export function Dashboard({ onStartLesson }: DashboardProps) {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-white p-6 rounded-[32px] border-2 border-slate-50 shadow-sm space-y-4">
              <div className="flex items-center space-x-3">
-               <span className="text-2xl">📅</span>
-               <div className="font-black text-[#1E114D]">Reto de 14 días</div>
+               <span className="text-2xl text-pink-500">📅</span>
+               <div className="font-black text-pink-950">Reto de 14 días</div>
              </div>
              <div className="text-slate-500 font-bold text-sm">Día 7 de 14</div>
              <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
-                <div className="h-full w-1/2 bg-purple-500" />
+                <div className="h-full w-1/2 bg-pink-500" />
              </div>
-             <div className="text-purple-600 font-bold text-sm">¡Vas muy bien! ➔</div>
+             <button onClick={() => onNavigate('retos')} className="text-pink-600 font-bold text-sm hover:underline text-left">¡Vas muy bien! ➔</button>
           </div>
 
           <div className="bg-white p-6 rounded-[32px] border-2 border-slate-50 shadow-sm space-y-4">
              <div className="flex items-center space-x-3">
-               <span className="text-2xl">🏆</span>
-               <div className="font-black text-[#1E114D]">Reto semanal</div>
+               <span className="text-2xl text-pink-500">🏆</span>
+               <div className="font-black text-pink-950">Reto semanal</div>
              </div>
              <div className="text-slate-500 font-bold text-sm">Posición: 2 de 8</div>
              <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
-                <div className="h-full w-3/4 bg-orange-400" />
+                <div className="h-full w-3/4 bg-pink-400" />
              </div>
-             <div className="text-slate-400 font-bold text-sm">Ver ranking ➔</div>
+             <button onClick={() => onNavigate('ranking')} className="text-pink-400 font-bold text-sm hover:underline text-left">Ver ranking ➔</button>
           </div>
 
-          <div className="bg-[#EBE4FF] p-6 rounded-[32px] border-2 border-slate-100 shadow-sm space-y-4">
-             <div className="font-black text-[#1E114D]">Invita a tus amigos</div>
+          <div className="bg-pink-50 p-6 rounded-[32px] border-2 border-pink-100 shadow-sm space-y-4">
+             <div className="font-black text-pink-950">Invita a tus amigos</div>
              <div className="flex -space-x-3">
                 {[1,2,3].map(i => (
                   <div key={i} className="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-slate-200">
@@ -159,8 +160,8 @@ export function Dashboard({ onStartLesson }: DashboardProps) {
                   </div>
                 ))}
              </div>
-             <div className="text-[#1E114D] text-xs font-bold leading-tight">Gana 50 💎 por cada amigo que se una</div>
-             <button className="text-[#5F33E1] font-black text-sm hover:underline">Invitar amigos</button>
+             <div className="text-pink-950 text-xs font-bold leading-tight">Gana 50 💎 por cada amigo que se una</div>
+             <button onClick={() => onNavigate('amigos')} className="text-pink-600 font-black text-sm hover:underline">Invitar amigos</button>
           </div>
       </div>
     </div>
@@ -169,10 +170,10 @@ export function Dashboard({ onStartLesson }: DashboardProps) {
 
 function bgColorClass(idx: number) {
   const colors = [
-    'bg-[#5F33E1] text-white',
-    'bg-[#4ADE80] text-white',
-    'bg-[#60A5FA] text-white',
-    'bg-[#FACC15] text-white',
+    'bg-pink-600 text-white',
+    'bg-rose-500 text-white',
+    'bg-pink-400 text-white',
+    'bg-pink-500 text-white',
   ];
   return colors[idx % colors.length];
 }
